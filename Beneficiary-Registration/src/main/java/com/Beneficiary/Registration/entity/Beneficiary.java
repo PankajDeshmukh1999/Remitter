@@ -117,6 +117,13 @@ public class Beneficiary {
 	public Beneficiary() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Beneficiary [Bid=" + Bid + ", name=" + name + ", accountNumber=" + accountNumber + ", transferLimit="
+				+ transferLimit + ", ifscCode=" + ifscCode + ", email=" + email + ", address=" + address
+				+ ", accountStatus=" + accountStatus + ", amount=" + amount + "]";
+	}
 	
-		
+	
 }

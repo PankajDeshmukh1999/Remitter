@@ -8,5 +8,6 @@ import com.Beneficiary.Registration.entity.Beneficiary;
 @Repository
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Integer>{
 	public Beneficiary  findByaccountNumber(int accountNumber);
+
 	
 }

@@ -1,11 +1,13 @@
 package com.Beneficiary.Registration.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +52,22 @@ public class BeneficiaryController {
 		return ResponseEntity.ok("Data updated");
 	}
 	
+	@DeleteMapping("/Beneficiary/deleteById/{id}")
+	public int deleteById(@PathVariable("id") int id) {
+		return service.deleteById(id);
+	}
+	
+	//
+	@PutMapping("/Beneficiary/updateById/{id}")
+	public String updateById(@PathVariable("id") int id, @RequestBody Beneficiary beneficiary) {
+		return service.updateBeneficiary(id, beneficiary);
+	}
+	
+	@GetMapping("/Beneficiary/ById/{bid}")
+	public Optional<Beneficiary> findById(@PathVariable("bid")int bid ) {
+		return service.findById(bid);
+	}
+
 	//
 	@PutMapping("/Beneficiary/updateBy/{accountNumber}")
 	public ResponseEntity<Boolean> updateAmount(@PathVariable int accountNumber,@RequestParam double amount ){
