@@ -1,8 +1,8 @@
 package com.fund.transfer.exception;
 
-public class TransferLimitInvalid extends Exception {
+public class TransactionListUnavilable extends Exception {
 
-	public TransferLimitInvalid(String message) {
+	public TransactionListUnavilable(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}

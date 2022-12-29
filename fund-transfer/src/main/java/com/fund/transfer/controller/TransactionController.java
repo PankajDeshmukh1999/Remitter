@@ -26,7 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fund.transfer.entity.Beneficiary;
 import com.fund.transfer.entity.RemitterRegistration;
 import com.fund.transfer.entity.Transaction;
-import com.fund.transfer.exception.TransferLimitInvalid;
+import com.fund.transfer.exception.TransactionListUnavilable;
 import com.fund.transfer.service.TransactionService;
 
 @RestController
@@ -40,7 +40,7 @@ public class TransactionController {
 	RestTemplate rest;
 	
 	@PostMapping("/transactions/transaction")
-	public Transaction fundTransfer(@RequestBody Transaction transaction) throws TransferLimitInvalid {
+	public Transaction fundTransfer(@RequestBody Transaction transaction) throws TransactionListUnavilable {
 		transaction.setTransactionId(Math.abs(new Random().nextLong()));
 		transaction.setResponceCode(000);
 		
@@ -78,6 +78,10 @@ public class TransactionController {
 	public List<Transaction> findData(@PathVariable("startDate") Date startDate,@PathVariable("endDate") Date endDate){
 		return service.betweenDates(startDate, endDate);
 	}
-		
+	
+	@GetMapping("/transaction/getList")
+	public List<Transaction> getAllList() throws TransactionListUnavilable{
+		return service.getAllTransaction();
+	}
 	
 }

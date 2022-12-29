@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -15,17 +16,23 @@ public class RemitterRegistration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-//	@NotEmpty
+
+	@NotBlank(message = "firstName is required")
 	private String firstName;
-//	@NotEmpty
+	
+    @NotBlank(message = "lastName is required")
 	private String lastName;
-//	@NotEmpty
+    
+    @NotNull(message = "accountNumber is required")
 	private int accountNumber;
-//	@NotEmpty
+    
+    @NotNull(message = "accountBalance is required")
 	private double accountBalance;
-//	@NotEmpty
+    
+    @NotBlank(message = "address is required")
 	private String address;
-//	@NotEmpty
+    
+    @NotBlank(message = "email is required")
 	private String email;
 
 	public int getId() {

@@ -16,7 +16,7 @@ import com.fund.transfer.config.ApplicationConstants;
 import com.fund.transfer.entity.Beneficiary;
 import com.fund.transfer.entity.RemitterRegistration;
 import com.fund.transfer.entity.Transaction;
-import com.fund.transfer.exception.TransferLimitInvalid;
+import com.fund.transfer.exception.TransactionListUnavilable;
 import com.fund.transfer.repository.TransactionRepository;
 
 @Service
@@ -31,6 +31,17 @@ public class TransactionService {
 	//save transactions
 	public Transaction saveTransaction(Transaction transactionDetails) {
 		return repository.save(transactionDetails);
+	}
+	
+	
+	public List<Transaction> getAllTransaction() throws TransactionListUnavilable{
+		List<Transaction> transaction =repository.findAll();
+		if(transaction==null) {
+			throw new TransactionListUnavilable("List not found");
+		}else {
+			return transaction;
+		}
+		
 	}
 	
 	//beneficiary by account number

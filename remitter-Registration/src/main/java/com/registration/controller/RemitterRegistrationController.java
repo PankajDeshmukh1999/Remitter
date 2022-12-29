@@ -1,6 +1,9 @@
 package com.registration.controller;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.security.auth.login.AccountNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.registration.entity.Beneficiary;
 import com.registration.entity.RemitterRegistration;
 import com.registration.exception.InvalidLogin;
+import com.registration.exception.RemitterNotFound;
 import com.registration.service.RemitterRegistrationService;
 
 @RestController
@@ -32,14 +36,19 @@ public class RemitterRegistrationController {
 	}
 	
 	@GetMapping("/registration/{accountNumber}")
-	public RemitterRegistration findByAccountNumber(@PathVariable("accountNumber") int accountNumber) {
+	public RemitterRegistration findByAccountNumber(@PathVariable("accountNumber") int accountNumber) throws AccountNotFoundException {
 		return service.findByaccountNumber(accountNumber);
+	}
+	
+	@GetMapping("/registration/getAllRemitter")
+	public List<RemitterRegistration> getAllData(){
+		return service.getAllRemitter();
 	}
 	
 	//update
 	@PutMapping("/registration/update/{accountNumber}")//
 	public ResponseEntity<Boolean>  saveUpdate(@PathVariable int accountNumber,
-											   @RequestParam double accountBalance ) {
+											   @RequestParam double accountBalance ) throws AccountNotFoundException {
 		boolean update = false;
 		update = service.updateRecords(accountNumber, accountBalance);
 		return ResponseEntity.status(HttpStatus.OK).body(update);

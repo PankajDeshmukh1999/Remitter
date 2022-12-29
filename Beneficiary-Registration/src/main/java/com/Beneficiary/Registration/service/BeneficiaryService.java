@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Beneficiary.Registration.entity.Beneficiary;
+import com.Beneficiary.Registration.exception.AccountNumberNotFound;
+import com.Beneficiary.Registration.exception.IdNotFound;
 import com.Beneficiary.Registration.repository.BeneficiaryRepository;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -32,35 +34,35 @@ public class BeneficiaryService {
 		return repository.findAll();
 	}
 
-	public void updateByAccountNumber(int accountNumber, Beneficiary beneficiary) throws Exception {
+	public void updateByAccountNumber(int accountNumber, Beneficiary beneficiary) throws AccountNumberNotFound   {
 		if (repository.findByaccountNumber(accountNumber).getAccountNumber() == accountNumber) {
 			beneficiary.setBid(repository.findByaccountNumber(accountNumber).getBid());
 			repository.save(beneficiary);
 		} else {
-			throw new Exception("Account number not found with " + accountNumber);
+			throw new AccountNumberNotFound("Account number not found with " + accountNumber);
 		}
 
 	}
 	
-	public int deleteById(int id) {
+	public int deleteById(int id) throws IdNotFound {
 		if(repository.existsById(id)) {
 		 repository.deleteById(id);
 		 return 1;
 		}
 		else {
-			return 0;
+			throw new IdNotFound("Id not found with id "+id+" please enter valid Id");
 		}
 	}
 	
 	//
-	public String updateBeneficiary(int id,Beneficiary beneficiary) {
+	public String updateBeneficiary(int id,Beneficiary beneficiary) throws IdNotFound {
 		if(repository.existsById(id)) {
 			beneficiary.setBid(id);
 			 repository.save(beneficiary);
 			 return "Record update";
 		}else {
 			repository.save(beneficiary);
-			return "Id not exist";
+			throw new IdNotFound("Id not found with id "+id+" please enter valid Id");
 		}
 		
 	}

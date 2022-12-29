@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Beneficiary.Registration.entity.Beneficiary;
+import com.Beneficiary.Registration.exception.AccountNumberNotFound;
+import com.Beneficiary.Registration.exception.IdNotFound;
 import com.Beneficiary.Registration.service.BeneficiaryService;
 
 @RestController
@@ -46,20 +49,21 @@ public class BeneficiaryController {
 		return service.searchByAccountNumber(accountNumber);
 	}
 	
+	@ExceptionHandler(AccountNumberNotFound.class)
 	@PutMapping("/Beneficiary/update/{accountNumber}")
-	public ResponseEntity<String> updateByAccountNumber(@PathVariable("accountNumber")int accountNumber, @RequestBody Beneficiary beneficiary ) throws Exception{
+	public ResponseEntity<String> updateByAccountNumber(@PathVariable("accountNumber")int accountNumber, @RequestBody Beneficiary beneficiary ) throws AccountNumberNotFound {
 		service.updateByAccountNumber(accountNumber, beneficiary);
 		return ResponseEntity.ok("Data updated");
 	}
 	
 	@DeleteMapping("/Beneficiary/deleteById/{id}")
-	public int deleteById(@PathVariable("id") int id) {
+	public int deleteById(@PathVariable("id") int id) throws IdNotFound {
 		return service.deleteById(id);
 	}
 	
 	//
 	@PutMapping("/Beneficiary/updateById/{id}")
-	public String updateById(@PathVariable("id") int id, @RequestBody Beneficiary beneficiary) {
+	public String updateById(@PathVariable("id") int id, @RequestBody Beneficiary beneficiary) throws IdNotFound {
 		return service.updateBeneficiary(id, beneficiary);
 	}
 	
