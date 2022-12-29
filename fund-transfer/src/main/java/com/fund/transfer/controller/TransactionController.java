@@ -78,36 +78,6 @@ public class TransactionController {
 	public List<Transaction> findData(@PathVariable("startDate") Date startDate,@PathVariable("endDate") Date endDate){
 		return service.betweenDates(startDate, endDate);
 	}
-	
-//	@GetMapping("transaction/{startDate}/{endDate}")
-//	public List<Transaction> findBetweenDate(@PathVariable("startDate") String startDate,@PathVariable("endDate") String endDate) throws ParseException{
-////		  SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-////	        Timestamp StartDateConverted = sdf1.parse;
-////	        Date EndDateConverted = sdf1.parse(endDate);
-//		
-//		
-//		String pattern = "yyyy-MM-dd";
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-//		Date t= (Date)startDate;
-//	        
-//	        List<Transaction> list = service.betweenDates(StartDateConverted , EndDateConverted);
-//	        return list;
-//
-//	}
-//	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	
 }
