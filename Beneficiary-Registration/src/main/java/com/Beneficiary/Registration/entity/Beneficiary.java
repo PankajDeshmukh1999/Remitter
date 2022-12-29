@@ -4,28 +4,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+
 @Entity
 public class Beneficiary {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int Bid;
-	//@NotEmpty
+	@NotBlank(message = "name not blank")
 	private String name;
-	//@NotEmpty
 	private int accountNumber;
-	//@NotEmpty
+	@NotBlank(message = "transferLimit not blank")
 	private String transferLimit;
-	//@NotEmpty
+	@NotBlank(message = "ifscCode not blank")
 	private String ifscCode;
-	//@NotEmpty
+	@NotBlank(message = "email not blank")
 	private String email;
-	//@NotEmpty
+	@NotBlank(message = "address not blank")
 	private String address;
-	//@NotEmpty
+	@NotBlank(message = "accountStatus not blank")
 	private String accountStatus;
-	
-	private double amount=0.0;
+
+	private double amount = 0.0;
 
 	public int getBid() {
 		return Bid;
@@ -99,9 +100,8 @@ public class Beneficiary {
 		this.amount = amount;
 	}
 
-	public Beneficiary(int bid, String name, int accountNumber, String transferLimit,
-			 String ifscCode, String email, String address, String accountStatus,
-			double amount) {
+	public Beneficiary(int bid, String name, int accountNumber, String transferLimit, String ifscCode, String email,
+			String address, String accountStatus, double amount) {
 		super();
 		Bid = bid;
 		this.name = name;
@@ -124,6 +124,5 @@ public class Beneficiary {
 				+ transferLimit + ", ifscCode=" + ifscCode + ", email=" + email + ", address=" + address
 				+ ", accountStatus=" + accountStatus + ", amount=" + amount + "]";
 	}
-	
-	
+
 }
