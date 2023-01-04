@@ -1,0 +1,84 @@
+<div class="btnn">
+  <button class="btn btn-dark" routerLink="/home">Back-Home</button>
+</div>
+<h3>Search beneficiary</h3>
+<div class="Conatiner">
+
+  <div class="searchBox">
+    <form [formGroup]="beneficiaryForm" (ngSubmit)="dropDown()">
+      <div>
+       
+        <label for="accountNumber">Account Number</label>
+        <input type="text" class="form-control" formControlName="accountNumber" ><br>
+          <button type="submit" class="btn btn-success">View</button>
+      </div><br>
+      <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Account number</th>
+            <th scope="col">Transfer limit</th>
+            <th scope="col">IFSC Code</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Account Status</th>
+            <th scope="col">Amount</th>
+            <!-- <th>Operation</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr >
+            <td>{{response.bid}}</td>
+            <td>{{response.name}}</td>
+            <td>{{response.accountNumber}}</td>
+            <td>{{response.transferLimit}}</td>
+            <td>{{response.ifscCode}}</td>
+            <td>{{response.email}}</td>
+            <td>{{response.address}}</td>
+            <td>{{response.accountStatus}}</td>
+            <td>{{response.amount}}</td>
+            <!-- <button class="btn btn-danger">Update</button> -->
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+<br>
+<br>
+  <h3>All Beneficiary</h3>
+  <table class="table table-success table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Account number</th>
+        <th scope="col">Transfer limit</th>
+        <th scope="col">IFSC Code</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Account Status</th>
+        <th scope="col">Amount</th>
+       <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of response">
+        <td>{{item.bid}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.accountNumber}}</td>
+        <td>{{item.transferLimit}}</td>
+        <td>{{item.ifscCode}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.address}}</td>
+        <td>{{item.accountStatus}}</td>
+        <td>{{item.amount}}</td>
+        <td><Form ng>
+          <button (click)="deleteBeneficiary(item.bid)" type="button" class="btn btn-danger">Delete</button>
+          <button class="btn btn-success" routerLink="/update/{{item.bid}}">Update</button>
+        </Form></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br><br>

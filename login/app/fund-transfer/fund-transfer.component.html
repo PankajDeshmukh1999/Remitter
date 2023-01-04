@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Fund Transaction</h2>
+  <div class="form1">
+    <form [formGroup]="transactionForm" (ngSubmit)="fundTransfer()">
+      <div class="form-group">
+        <label for="name">Remitter account Number:</label>
+        <input type="text" class="form-control" placeholder="Enter Remitter account Number"
+          formControlName="remitterAccountNumber">
+        <small class="text-danger" *ngIf="transactionForm.controls.remitterAccountNumber.invalid">Enter Remitter account
+          Number</small>
+      </div>
+      <div class="form-group">
+        <label for="name">Beneficiary account Number:</label>
+        <input type="text" class="form-control" placeholder="Enter name" formControlName="beneficiaryAaccountNumber">
+        <small class="text-danger" *ngIf="transactionForm.controls.beneficiaryAaccountNumber.invalid">Enter Beneficiary
+          account Number</small>
+      </div>
+      <div class="form-group">
+        <label for="name">Amount:</label>
+        <input type="text" class="form-control" placeholder="Enter Amount" formControlName="amount">
+        <small class="text-danger" *ngIf="transactionForm.controls.amount.invalid">Enter Amount</small>
+      </div>
+      <div class="form-group">
+        <label for="name">narration:</label>
+        <input type="text" class="form-control" placeholder="Enter Narration" formControlName="narration">
+        <small class="text-danger" *ngIf="transactionForm.controls.narration.invalid">Enter Narration</small>
+      </div><br>
+      <button type="submit" [disabled]="transactionForm.invalid" class="btn btn-outline-primary">send</button>
+      <button type="reset" class="btn btn-outline-danger">Reset</button>
+    </form><br><br>
+    <div>
+      <button class="btn btn-dark" routerLink="/home">Back-Home</button>
+    </div>
+  </div>
+</div>

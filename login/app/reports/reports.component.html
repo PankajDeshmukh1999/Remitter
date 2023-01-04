@@ -1,0 +1,43 @@
+<div class="btnn">
+    <button class="btn btn-dark" routerLink="/home">Back-Home</button>
+</div>
+<h3>Reports</h3>
+<div class="report">
+    <form [formGroup]="dateForm" (ngSubmit)="getReport()">
+        <div class="rp">
+            <label for="">From date</label>
+            <input type="date" formControlName="fromDate">
+            <label for="">To date</label>
+            <input type="date" formControlName="toDate">
+            <button id="v" value="view" type="submit" class="btn btn-primary">view</button>
+            <button id="d" value="view" type="submit" class="btn btn-primary" onclick="window.print()">Download</button>
+        </div>
+        <div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Transaction Id</th>
+                        <th scope="col">Remitter Account Number</th>
+                        <th scope="col">Beneficiary Account Number</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Narration</th>
+                        <th scope="col">Response code</th>
+                        <th scope="col">Transaction Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let obj of responses">
+                        <td>{{obj.transactionId}}</td>
+                        <th>{{obj.remitterAccountNumber}}</th>
+                        <td>{{obj.beneficiaryAaccountNumber}}</td>
+                        <td>{{obj.amount}}</td>
+                        <td>{{obj.narration}}</td>
+                        <td>{{obj.responceCode}}</td>
+                        <td>{{obj.transactionDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div><br><br>

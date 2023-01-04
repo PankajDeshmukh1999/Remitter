@@ -1,0 +1,10 @@
+.box{
+
+    padding: 10px;
+    
+    margin: 20px 160px 20px 160px;
+    background-color: #ddf5f2;
+    border-radius: 30px;
+    box-shadow: #0e1e251f 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    width: 70%;
+}

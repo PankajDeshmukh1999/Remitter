@@ -1,0 +1,48 @@
+<div>
+  <button class="btn btn-dark" routerLink="/home">Home-page</button>
+</div>
+<div class="box">
+<h1 class="text-center">Remitter Registration</h1><div class="container">
+    <form [formGroup]="remitterForm" (ngSubmit)="remiter()">
+      <div class="form-group">
+        <label for="first name">* First Name:</label>
+        <input type="text" class="form-control"  placeholder="Enter First name" formControlName="firstName">
+        <small class="text-danger" *ngIf="remitterForm.controls.firstName.invalid">First Name</small>
+      </div>
+
+      <div class="form-group">
+        <label for="last name">* Last Name:</label>
+        <input type="text" class="form-control"  placeholder="Enter last name" formControlName="lastName">
+        <small class="text-danger" *ngIf="remitterForm.controls.lastName.invalid">Last Name</small>
+      </div>
+
+      <div class="form-group">
+        <label for="Account Number">* Account Number:</label>
+        <input type="text" class="form-control"  placeholder="Enter Account Number" formControlName="accountNumber">
+        <small class="text-danger" *ngIf="remitterForm.controls.accountNumber.invalid">Account Number</small>
+      </div>
+
+      <div class="form-group">
+        <label for="Account Balance">* Account Balance:</label>
+        <input type="text" class="form-control"  placeholder="Enter Account Balance" formControlName="accountBalance">
+        <small class="text-danger" *ngIf="remitterForm.controls.accountBalance.invalid">Account Balance</small>
+      </div>
+
+      <div class="form-group">
+        <label for="Address">* Address:</label>
+        <input type="text" class="form-control"  placeholder="Enter Address" formControlName="address">
+        <small class="text-danger" *ngIf="remitterForm.controls.address.invalid">Address</small>
+      </div>
+
+      <div class="form-group">
+        <label for="Email Address">* Email Address:</label>
+        <input type="text" class="form-control"  placeholder="Enter Email Address" formControlName="email">
+        <small class="text-danger" *ngIf="remitterForm.controls.email.invalid">Email Address</small>
+      </div>
+      <br>
+      <span style="color: red;">* feilds are required</span> <br>
+      <button type="submit" [disabled]="remitterForm.invalid" class="btn btn-outline-primary">Create</button>
+      <input class="btn btn-outline-danger" type="reset" value="Reset">
+    </form>
+  </div>
+</div>
